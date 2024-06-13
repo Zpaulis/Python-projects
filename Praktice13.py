@@ -18,16 +18,18 @@ url = "https://dummyjson.com/recipes"
 response = requests.get(url)
 if response.status_code == 200:
     data = response.json() # download json data
-    # print (data)
     parsed_recipes = data['recipes'] # parce recipes from JSON
-    with open('parsed_recipes.json', 'w') as f:
+    for p in parsed_recipes:
+        print (p['id'], p['mealType'])
+    with open('parsed_recipes.json', 'w',encoding="utf-8") as f:
         json.dump(parsed_recipes, f) # Save all recipes to JSON file
-    # print (type(parsed_recipes))
     # take first 5 Potato containing recipes (if there are so much)
     potato_recipes = search("Potato")[:4]
-    # print (potato_recipes)
-    with open('potato_recipes.json', 'w') as f: # Save Potato recipes to JSON file
-        json.dump(potato_recipes, f, indent=4)
+    with open('potato_recipes.json', 'w',encoding="utf-8") as f: 
+        json.dump(potato_recipes, f, indent=4) # Save Potato recipes to JSON file
 else:
     print(f"Status code is {response.status_code}")
     # raise Exception("API did not return 200 status code")
+# 1b. Izvelciet  visas  zupu receptes no tā API
+# Te var būt dažādi piegājieni, bet visticamāk mūs interesēs mealType lauks kurā ir viena no vērtībām soup
+
