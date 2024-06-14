@@ -9,10 +9,10 @@ def get_towns():
     except:
         print("pietiks inicializēt!")
     # create database instance
-    db=firestore.client()
+    db = firestore.client()
     # get data from firestore
     # get all towns data to list of dictonaries
-    result = db.collection('towns').get()
+    result = db.collection("towns").get()
     all_towns = ([])
     # TODO Insert controle for success
     for one_doc in result:
